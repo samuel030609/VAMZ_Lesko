@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
             CalorieTracker_VAMZTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                    Greeting("Ahoy")
                 }
             }
         }
@@ -38,6 +38,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     CalorieTracker_VAMZTheme {
-        Greeting("Android")
+        Greeting("Andro")
     }
 }
