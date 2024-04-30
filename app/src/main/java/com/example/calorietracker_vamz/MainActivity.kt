@@ -3,14 +3,7 @@ package com.example.calorietracker_vamz
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.calorietracker_vamz.ui.home.HomeScreen
+import com.example.calorietracker_vamz.ui.screens.HomeScreen
 import com.example.calorietracker_vamz.ui.theme.CalorieTracker_VAMZTheme
 
 class MainActivity : ComponentActivity() {
