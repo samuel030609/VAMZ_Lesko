@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">CalorieTracker_VAMZ</string>
     <string name="hometopbar">Home</string>
+    <string name="homebottombar">Home</string>
+    <string name="foodbottombar">Food</string>
+
 </resources>

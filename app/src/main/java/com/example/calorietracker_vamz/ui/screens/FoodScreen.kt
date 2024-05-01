@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ButtonScreen() {
+fun FoodScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -32,5 +32,5 @@ fun ButtonScreen() {
 @Preview
 @Composable
 fun PreviewButtonScreen() {
-    ButtonScreen()
+    FoodScreen()
 }
