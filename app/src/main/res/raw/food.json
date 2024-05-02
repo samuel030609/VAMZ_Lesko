@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "name": "jahoda",
+    "calories": 10,
+    "protein": 1,
+    "carbs": 20,
+    "fat": 0,
+    "sugar": 15
+  },
+  {
+    "id": 1,
+    "name": "jablko",
+    "calories": 50,
+    "protein": 1,
+    "carbs": 10,
+    "fat": 0,
+    "sugar": 5
+  }
+]
