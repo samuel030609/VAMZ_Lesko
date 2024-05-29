@@ -3,5 +3,6 @@
     <string name="hometopbar">Home</string>
     <string name="homebottombar">Home</string>
     <string name="foodbottombar">Food</string>
+    <string name="eatenfoodbottombar">Eaten Food</string>
 
 </resources>

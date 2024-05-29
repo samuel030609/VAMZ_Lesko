@@ -4,7 +4,7 @@ import android.app.Application
 import com.example.calorietracker_vamz.data.AppContainer
 import com.example.calorietracker_vamz.data.AppDataContainer
 
-class InventoryApplication : Application() {
+class InventoryApplication : Application(){
 
     lateinit var container: AppContainer
 

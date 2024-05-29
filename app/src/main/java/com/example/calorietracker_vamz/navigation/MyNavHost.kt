@@ -4,12 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.calorietracker_vamz.ui.screens.EatenFoodScreen
 import com.example.calorietracker_vamz.ui.screens.FoodScreen
 import com.example.calorietracker_vamz.ui.screens.StatisticScreen
 
 @Composable
 fun MyNavHost(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
 
     NavHost(navController = navController,
@@ -19,7 +20,22 @@ fun MyNavHost(
             StatisticScreen()
         }
         composable(Screens.FoodScreen.path) {
-            FoodScreen()
+            FoodScreen(
+                navigateToEatenFoodScreen = { foodId ->
+                    navController.navigate(Screens.AddFoodScreen(foodId).path)
+                }
+            )
+        }
+
+        composable(Screens.EatenFoodsScreen.path) {
+            EatenFoodScreen()
+        }
+
+        composable("addEatenFoodScreen/{foodId}") { backStackEntry ->
+            val arguments = backStackEntry.arguments
+            val foodId = arguments?.getInt("foodId")
+            if (foodId == null) {
+                AddFoodScreen(foodId = foodId)
         }
     }
 }

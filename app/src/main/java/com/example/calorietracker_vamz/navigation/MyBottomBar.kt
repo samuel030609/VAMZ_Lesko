@@ -20,7 +20,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 fun MyBottomBar(navController: NavController) {
     val listOfItem = listOf(
         Screens.StatisticScreen,
-        Screens.FoodScreen
+        Screens.FoodScreen,
+        Screens.EatenFoodsScreen
     )
 
     NavigationBar (

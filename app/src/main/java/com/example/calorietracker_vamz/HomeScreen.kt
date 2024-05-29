@@ -37,6 +37,7 @@ fun HomeScreen() {
                 .fillMaxSize()
                 .padding(it)
 
+
         ){
             MyNavHost(
                 navController = homeNavController

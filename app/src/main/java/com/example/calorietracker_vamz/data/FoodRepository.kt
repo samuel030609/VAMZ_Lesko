@@ -9,4 +9,5 @@ interface FoodRepository {
     suspend fun update(food: Food)
     suspend fun delete(food: Food)
     fun getFood(id: Int): Flow<Food?>
+
 }

@@ -17,7 +17,7 @@ abstract class FoodDatabase : RoomDatabase() {
             fun getDatabase(context: Context): FoodDatabase {
                 return Instance ?: synchronized(this) {
                     Room.databaseBuilder(context, FoodDatabase::class.java, "food_database")
-                        .fallbackToDestructiveMigration()
+                        .addCallback(PrepopulateFoodDatabase(context))
                         .build()
                         .also {
                         Instance = it
