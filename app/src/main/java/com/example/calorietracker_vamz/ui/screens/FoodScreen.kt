@@ -26,6 +26,7 @@ import com.example.calorietracker_vamz.data.Food
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FoodScreen(
+    navigateToEatenFoodScreen: (Int) -> Unit,
     viewModel: FoodScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)
 ) {
     val foodUiState by viewModel.foodUiState.collectAsState()
@@ -33,7 +34,8 @@ fun FoodScreen(
     val foods = foodUiState.foods
 
     FoodBody(
-        foods = foods
+        foods = foods,
+        onFoodClick = { foodId -> navigateToEatenFoodScreen(foodId) }
     )
 
 }
@@ -41,6 +43,7 @@ fun FoodScreen(
 @Composable
 fun FoodBody(
     foods: List<Food>,
+    onFoodClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column (
@@ -55,6 +58,7 @@ fun FoodBody(
         } else {
             FoodList(
                 foods = foods,
+                onFoodClick = onFoodClick,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
         }
@@ -65,6 +69,7 @@ fun FoodBody(
 @Composable
 fun FoodList(
     foods: List<Food>,
+    onFoodClick: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn (
@@ -80,7 +85,8 @@ fun FoodList(
                 protein = food.protein.toString(),
                 carbs = food.carbs.toString(),
                 fat = food.fat.toString(),
-                sugar = food.sugar.toString()
+                sugar = food.sugar.toString(),
+                onClick = { onFoodClick(food.id) }
             )
         }
     }
