@@ -18,17 +18,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calorietracker_vamz.R
+import com.example.calorietracker_vamz.ViewModelInitializer
+import com.example.calorietracker_vamz.navigation.NavigationDestination
 
+
+object AddFoodDestination : NavigationDestination {
+    override val path = "add_food"
+    override val titleRes = R.string.addfoodtitle
+    const val foodIdKey = "foodId"
+    val pathWithArgs = "$path/{$foodIdKey}"
+}
 @Composable
-fun AddFoodScreen(navigateBack: () -> Unit, foodId: Int?)
+fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = viewModel(factory = ViewModelInitializer.Factory))
 {
-    val viewModel: AddFoodScreenViewModel = viewModel()
 
-    if (foodId != null) {
-        viewModel.selectFood(foodId)
-    }
 
-    val food by viewModel.food.collectAsState()
+    val foodUiState by viewModel.foodUiState.collectAsState()
     val quantity by viewModel.quantity.collectAsState()
 
     Column (modifier = Modifier.padding(16.dp)) {
@@ -36,34 +42,34 @@ fun AddFoodScreen(navigateBack: () -> Unit, foodId: Int?)
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        if (food != null) {
+        if (foodUiState?.food != null) {
             Card {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Row {
                         Text(
-                            text = "Name: ${food!!.name}",
+                            text = "Name: ${foodUiState!!.food!!.name}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Text(
-                            text = "Calories: ${food!!.calories}",
+                            text = "Calories: ${foodUiState!!.food!!.calories}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Text(
-                            text = "Protein: ${food!!.protein}",
+                            text = "Protein: ${foodUiState!!.food!!.protein}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
                     Row {
                         Text(
-                            text = "Carbs: ${food!!.carbs}",
+                            text = "Carbs: ${foodUiState!!.food!!.carbs}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Text(
-                            text = "Fat: ${food!!.fat}",
+                            text = "Fat: ${foodUiState!!.food!!.fat}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Text(
-                            text = "Sugar: ${food!!.sugar}",
+                            text = "Sugar: ${foodUiState!!.food!!.sugar}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }

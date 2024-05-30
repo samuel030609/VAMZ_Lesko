@@ -20,11 +20,16 @@ object ViewModelInitializer {
         }
 
         initializer {
-            val eatenFoodsViewModel = EatenFoodsViewModel()
+            EatenFoodsViewModel(
+                inventoryApplication().container2.eatenFoodRepository
+            )
+        }
+
+        initializer {
             AddFoodScreenViewModel(
                 this.createSavedStateHandle(),
                 inventoryApplication().container.foodRepository,
-                eatenFoodsViewModel
+                inventoryApplication().container2.eatenFoodRepository
             )
         }
 

@@ -3,18 +3,27 @@ package com.example.calorietracker_vamz.ui.screens
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.calorietracker_vamz.data.Food
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.example.calorietracker_vamz.data.FoodRepository
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 
-class EatenFoodsViewModel : ViewModel() {
+class EatenFoodsViewModel (eatenFoodRepository: FoodRepository): ViewModel() {
 
-    private val _eatenFoodsState = MutableStateFlow<List<Food>>(emptyList())
-    val eatenFoodsState: StateFlow<List<Food>> = _eatenFoodsState
+    val foodUiState: StateFlow<EatenFoodUiState> =
+        eatenFoodRepository.getAlphabetizedFoods().map { EatenFoodUiState(it) }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
+                initialValue = EatenFoodUiState()
+            )
 
-    fun addEatenFood(food: Food) {
-        viewModelScope.launch {
-            _eatenFoodsState.value += food
-        }
+    companion object {
+        private const val TIMEOUT_MILLIS = 5_000L
     }
 }
+
+data class EatenFoodUiState(
+    val foods: List<Food> = listOf()
+)

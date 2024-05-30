@@ -17,5 +17,5 @@ sealed class Screens(
     data object FoodScreen : Screens("Food",Icons.Default.Add, R.string.foodbottombar)
     data object EatenFoodsScreen : Screens("EatenFood", Icons.Default.Star, R.string.eatenfoodbottombar)
 
-    data class AddFoodScreen(val foodId: Int) : Screens("AddFoodScreen/$foodId", null, null)
+
 }

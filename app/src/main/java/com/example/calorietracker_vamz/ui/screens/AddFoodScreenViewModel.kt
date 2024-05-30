@@ -6,41 +6,35 @@ import androidx.lifecycle.viewModelScope
 import com.example.calorietracker_vamz.data.Food
 import com.example.calorietracker_vamz.data.FoodRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, private val foodRepository: FoodRepository, private val eatenFoodsViewModel: EatenFoodsViewModel) : ViewModel() {
+class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, private val foodRepository: FoodRepository, private val eatenFoodRepository: FoodRepository) : ViewModel() {
 
 
 
-    private val _food = MutableStateFlow<Food?>(null)
-    val food = _food
+
+
+    val foodUiState = MutableStateFlow<FoodUiState?>(null)
 
 
 
     val quantity = MutableStateFlow(0)
 
+    private val foodId: Int = checkNotNull(savedStateHandle[AddFoodDestination.foodIdKey])
 
     init {
-        val savedFood = savedStateHandle.get<Food>("food")
-        if (savedFood != null) {
-            _food.value = savedFood
-        }
-    }
-
-    fun selectFood(foodId: Int) {
         viewModelScope.launch {
-            val food = foodRepository.getFood(foodId).first()
-            if (food != null) {
-                _food.value = food
-                savedStateHandle["food"] = food
-            }
+            foodUiState.value = FoodUiState(foodRepository.getFood(foodId)
+                .filterNotNull()
+                .first())
         }
     }
 
     fun addEatenFood() {
         viewModelScope.launch {
-            val food = food.value
+            val food = foodUiState.value?.food
             val quantity = quantity.value
             if (food != null && quantity > 0) {
                 val newFood = food.copy(
@@ -50,8 +44,12 @@ class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, pri
                     fat = food.fat / 100 * quantity,
                     sugar = food.sugar / 100 * quantity
                 )
-                eatenFoodsViewModel.addEatenFood(newFood)
+                eatenFoodRepository.insert(newFood)
             }
         }
     }
 }
+
+data class FoodUiState(
+    val food: Food? = null
+)

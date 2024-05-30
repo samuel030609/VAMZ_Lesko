@@ -18,12 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calorietracker_vamz.ViewModelInitializer
 import com.example.calorietracker_vamz.data.Food
 
 @Composable
-fun EatenFoodScreen(viewModel: EatenFoodsViewModel = viewModel())
+fun EatenFoodScreen(viewModel: EatenFoodsViewModel = viewModel(factory = ViewModelInitializer.Factory))
 {
-    val eatenFoods by viewModel.eatenFoodsState.collectAsState()
+    val foodUiState by viewModel.foodUiState.collectAsState()
+
+    val eatenFoods = foodUiState.foods
 
     EatenFoodList(foods = eatenFoods)
 

@@ -4,8 +4,11 @@ package com.example.calorietracker_vamz.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.calorietracker_vamz.ui.screens.AddFoodDestination
 import com.example.calorietracker_vamz.ui.screens.AddFoodScreen
 import com.example.calorietracker_vamz.ui.screens.EatenFoodScreen
 import com.example.calorietracker_vamz.ui.screens.FoodScreen
@@ -24,8 +27,8 @@ fun MyNavHost(
         }
         composable(Screens.FoodScreen.path) {
             FoodScreen(
-                navigateToEatenFoodScreen = { foodId ->
-                    navController.navigate(Screens.AddFoodScreen(foodId).path)
+                navigateToEatenFoodScreen = {
+                    navController.navigate("${AddFoodDestination.path}/$it")
                 }
             )
         }
@@ -34,15 +37,13 @@ fun MyNavHost(
             EatenFoodScreen()
         }
 
-        composable("AddFoodScreen/{foodId}") { backStackEntry ->
-            val arguments = backStackEntry.arguments
-            val foodId = arguments?.getInt("foodId")
-            if (foodId != null) {
-                AddFoodScreen(
-                    navigateBack = { navController.popBackStack() },
-                    foodId = foodId
-                )
-            }
+        composable(
+            route = AddFoodDestination.pathWithArgs,
+            arguments = listOf(navArgument(AddFoodDestination.foodIdKey) {
+                type = NavType.IntType
+            })
+        ) {
+            AddFoodScreen(navigateBack = { navController.popBackStack() })
         }
     }
 }

@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.stateIn
 
 class FoodScreenViewModel (foodRepository: FoodRepository) : ViewModel() {
 
-    val foodUiState: StateFlow<FoodUiState> =
-        foodRepository.getAlphabetizedFoods().map { FoodUiState(it) }
+    val foodUiState: StateFlow<FoodsUiState> =
+        foodRepository.getAlphabetizedFoods().map { FoodsUiState(it) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
-                initialValue = FoodUiState()
+                initialValue = FoodsUiState()
             )
 
     companion object {
@@ -25,6 +25,6 @@ class FoodScreenViewModel (foodRepository: FoodRepository) : ViewModel() {
 
 }
 
-data class FoodUiState(
+data class FoodsUiState(
     val foods: List<Food> = listOf()
 )
