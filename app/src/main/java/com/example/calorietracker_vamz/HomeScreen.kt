@@ -7,8 +7,10 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.calorietracker_vamz.navigation.MyBottomBar
@@ -24,8 +26,9 @@ fun HomeScreen() {
         topBar = {
             CenterAlignedTopAppBar(
                 title = {
-                    Text(text = "Calorie Tracker", modifier = Modifier.padding(16.dp))
-                }
+                    Text(text = "Calorie Tracker", modifier = Modifier.padding(16.dp), color = Color.White)
+                },
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Blue)
             )
         },
         bottomBar = {

@@ -38,11 +38,12 @@ suspend fun prePopulateDatabase(context: Context) {
                 foodDao.insert(
                     Food(
                         name = food.getString("name"),
-                        calories = food.getInt("calories"),
-                        protein = food.getInt("protein"),
-                        carbs = food.getInt("carbs"),
-                        fat = food.getInt("fat"),
-                        sugar = food.getInt("sugar")
+                        calories = food.getDouble("calories"),
+                        protein = food.getDouble("protein"),
+                        carbs = food.getDouble("carbs"),
+                        fat = food.getDouble("fat"),
+                        sugar = food.getDouble("sugar"),
+                        picture = food.getString("picture")
                     )
                 )
             }

@@ -7,14 +7,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -28,7 +32,32 @@ fun EatenFoodScreen(viewModel: EatenFoodsViewModel = viewModel(factory = ViewMod
 
     val eatenFoods = foodUiState.foods
 
-    EatenFoodList(foods = eatenFoods)
+    EatenFoodBody(foods = eatenFoods)
+
+}
+
+@Composable
+fun EatenFoodBody(
+    foods: List<Food>,
+    modifier: Modifier = Modifier
+) {
+    Column (
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        if(foods.isEmpty()) {
+            Text(
+                textAlign = TextAlign.Center,
+                text = "No food added yet today",
+                fontSize = 20.sp
+            )
+        } else {
+            EatenFoodList(
+                foods = foods,
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+            )
+        }
+    }
 
 }
 
@@ -57,49 +86,87 @@ fun EatenFoodList(
 @Composable
 fun EatenFoodItem(modifier: Modifier = Modifier, id: String = "", name: String = "", calories: String = "", protein: String = "", carbs: String = "", fat: String = "", sugar: String = "") {
     Card(
-        modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        modifier = modifier
+            .padding(8.dp)
+            .fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(8.dp)
     ) {
 
-        Column (modifier = Modifier.padding(16.dp),
+        Column (modifier = Modifier.padding(16.dp).fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         )
         {
             Text(
                 text = "Name: $name",
                 fontSize = 20.sp,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                style = MaterialTheme.typography.headlineMedium
+            )
+            Row (modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween){
+                Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                    InfoForFood("ID" , id)
+                    InfoForFood("Carbs", carbs)
+                }
+                Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                    InfoForFood("Calories", calories)
+                    InfoForFood("Fat", fat)
+                }
+                Column (horizontalAlignment = Alignment.CenterHorizontally) {
+                    InfoForFood("Protein", protein)
+                    InfoForFood("Sugar", sugar)
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun InfoForFood(name: String, value: String) {
+    Column (
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = name,
+            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyMedium
+        )
+        Text(
+            text = value,
+            fontSize = 16.sp,
+            style = MaterialTheme.typography.bodyMedium
+        )
+    }
+
+}
+
+@Composable
+fun InfoCardForFood(name: String, value: String) {
+    val backgroundColor = MaterialTheme.colorScheme.primary
+    Card(
+        modifier = Modifier
+            .padding(8.dp),
+        colors = CardDefaults.cardColors(containerColor = backgroundColor, contentColor = Color.White),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column (
+            modifier = Modifier
+                .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = name,
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = "ID: $id",
-                    fontSize = 20.sp
-                )
-
-                Text(
-                    text = "Calories: $calories",
-                    fontSize = 20.sp
-                )
-
-                Text(
-                    text = "Protein: $protein",
-                    fontSize = 20.sp
-                )
-            }
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = "Carbs: $carbs",
-                    fontSize = 20.sp
-                )
-                Text(
-                    text = "Fat: $fat",
-                    fontSize = 20.sp
-                )
-                Text(
-                    text = "Sugar: $sugar",
-                    fontSize = 20.sp
-                )
-            }
+            Text(
+                text = value,
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.align(Alignment.CenterHorizontally)
+            )
         }
     }
 }

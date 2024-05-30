@@ -38,11 +38,11 @@ class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, pri
             val quantity = quantity.value
             if (food != null && quantity > 0) {
                 val newFood = food.copy(
-                    calories = food.calories / 100 * quantity,
-                    protein = food.protein / 100 * quantity,
-                    carbs = food.carbs / 100 * quantity,
-                    fat = food.fat / 100 * quantity,
-                    sugar = food.sugar / 100 * quantity
+                    calories = String.format("%.2f", food.calories / 100 * quantity).replace(",", ".").toDouble(),
+                    protein = String.format("%.2f", food.protein / 100 * quantity).replace(",", ".").toDouble(),
+                    carbs = String.format("%.2f", food.carbs / 100 * quantity).replace(",", ".").toDouble(),
+                    fat = String.format("%.2f", food.fat / 100 * quantity).replace(",", ".").toDouble(),
+                    sugar = String.format("%.2f", food.sugar / 100 * quantity).replace(",", ".").toDouble()
                 )
                 eatenFoodRepository.insert(newFood)
             }

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.calorietracker_vamz.ui.screens.AddFoodDestination
 
 @Composable
 fun MyBottomBar(navController: NavController) {
@@ -24,36 +25,42 @@ fun MyBottomBar(navController: NavController) {
         Screens.EatenFoodsScreen
     )
 
-    NavigationBar (
-        modifier = Modifier.fillMaxWidth()
-    )
-    {
-        val backStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = backStackEntry?.destination?.route
+    val backStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = backStackEntry?.destination?.route
 
-        listOfItem.forEach { item ->
-            NavigationBarItem(
-                icon = {
-                    Icon(imageVector = item.icon!!,
-                        contentDescription = null,
-                        tint = if (currentRoute == item.path) Color.DarkGray else Color.Gray,
-                    )
-                },
-                label = {
-                    Text(
-                        text = stringResource(id = item.resourceId!!),
-                        style = if (currentRoute == item.path) TextStyle(fontSize = 10.sp,color = Color.DarkGray) else TextStyle(fontSize = 10.sp,color = Color.Gray)
-                    )
-                },
-                selected = currentRoute == item.path,
-                onClick = {
-                    navController.navigate(item.path) {
-                        popUpTo(navController.graph.findStartDestination().id)
-                        launchSingleTop = true
-                        restoreState = true
+    if (currentRoute != AddFoodDestination.path && currentRoute != AddFoodDestination.pathWithArgs) {
+        NavigationBar(
+            modifier = Modifier.fillMaxWidth()
+        )
+        {
+            listOfItem.forEach { item ->
+                NavigationBarItem(
+                    icon = {
+                        Icon(
+                            imageVector = item.icon!!,
+                            contentDescription = null,
+                            tint = if (currentRoute == item.path) Color.DarkGray else Color.Gray,
+                        )
+                    },
+                    label = {
+                        Text(
+                            text = stringResource(id = item.resourceId!!),
+                            style = if (currentRoute == item.path) TextStyle(
+                                fontSize = 10.sp,
+                                color = Color.DarkGray
+                            ) else TextStyle(fontSize = 10.sp, color = Color.Gray)
+                        )
+                    },
+                    selected = currentRoute == item.path,
+                    onClick = {
+                        navController.navigate(item.path) {
+                            popUpTo(navController.graph.findStartDestination().id)
+                            launchSingleTop = true
+                            restoreState = true
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }

@@ -13,28 +13,40 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calorietracker_vamz.ViewModelInitializer
 
 @Composable
 fun StatisticScreen(
     modifier: Modifier = Modifier,
+    viewModel: StatisticScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)
+
 ) {
+    val uiState by viewModel.uiState.collectAsState()
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ){
-        CalorieSection(200,300)
-        NutrientsSection()
+        CalorieSection(caloriesConsumed = uiState.eatenCalories,300)
+        NutrientsSection(
+            protein = uiState.eatenProtein,
+            carbs = uiState.eatenCarbs,
+            fat = uiState.eatenFat,
+            sugar = uiState.eatenSugar
+        )
     }
 }
 
 @Composable
 fun CalorieSection(
-    caloriesConsumed: Int,
+    caloriesConsumed: Double,
     caloriesNeeded: Int
 ) {
     Surface(
@@ -99,7 +111,12 @@ fun CalorieSection(
 }
 
 @Composable
-fun NutrientsSection() {
+fun NutrientsSection(
+    protein: Double,
+    carbs: Double,
+    fat: Double,
+    sugar: Double
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -132,15 +149,15 @@ fun NutrientsSection() {
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    NutrientItem(name = "Protein", amount = "150g")
-                    NutrientItem(name = "Carbohydrates", amount = "200g")
+                    NutrientItem(name = "Protein", amount = "$protein g")
+                    NutrientItem(name = "Carbohydrates", amount = "$carbs g")
                 }
                 Column(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    NutrientItem(name = "Fat", amount = "60g")
-                    NutrientItem(name = "Fiber", amount = "30g")
+                    NutrientItem(name = "Fat", amount = "$fat g")
+                    NutrientItem(name = "Fiber", amount = "$sugar g")
                 }
             }
         }

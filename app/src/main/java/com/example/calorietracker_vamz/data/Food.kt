@@ -8,11 +8,12 @@ data class Food (
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val name: String,
-    val calories: Int,
-    val protein: Int,
-    val carbs: Int,
-    val fat: Int,
-    val sugar: Int
+    val calories: Double,
+    val protein: Double,
+    val carbs: Double,
+    val fat: Double,
+    val sugar: Double,
+    val picture: String
 )
 {
 

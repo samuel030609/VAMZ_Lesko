@@ -5,7 +5,8 @@
     "protein": 1,
     "carbs": 20,
     "fat": 0,
-    "sugar" : 15
+    "sugar" : 15,
+    "picture": "https://www.zahradnici.sk/image/cache/catalog/jahody/fruit-6720525_960_720-wd-1000x1000.jpg"
 
   },
   {
@@ -14,7 +15,8 @@
     "protein": 1,
     "carbs": 10,
     "fat": 0,
-    "sugar" : 5
+    "sugar" : 5,
+    "picture": "https://www.ovocnickovo.sk/wp-content/uploads/2020/04/jablko_cervene.png"
 
   },
 
@@ -25,7 +27,8 @@
     "protein": 1,
     "carbs": 20,
     "fat": 0,
-    "sugar" : 5
+    "sugar" : 5,
+    "picture": "https://www.zahradnici.sk/image/cache/catalog/hrusky/pyrus-hruska-konferencia__-wd-1000x1000.jpg"
 
   }
 ]
