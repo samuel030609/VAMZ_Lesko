@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.calorietracker_vamz.ui.screens.AddFoodScreenViewModel
 import com.example.calorietracker_vamz.ui.screens.EatenFoodsViewModel
 import com.example.calorietracker_vamz.ui.screens.FoodScreenViewModel
+import com.example.calorietracker_vamz.ui.screens.InfoScreenViewModel
 import com.example.calorietracker_vamz.ui.screens.StatisticScreenViewModel
 
 object ViewModelInitializer {
@@ -24,6 +25,10 @@ object ViewModelInitializer {
             EatenFoodsViewModel(
                 inventoryApplication().container2.eatenFoodRepository
             )
+        }
+
+        initializer {
+            InfoScreenViewModel()
         }
 
         initializer {

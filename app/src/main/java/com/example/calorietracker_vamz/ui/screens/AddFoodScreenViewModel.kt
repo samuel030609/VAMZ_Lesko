@@ -31,7 +31,7 @@ class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, pri
                 .first())
         }
     }
-
+    
     fun addEatenFood() {
         viewModelScope.launch {
             val food = foodUiState.value?.food

@@ -34,7 +34,7 @@ fun StatisticScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ){
-        CalorieSection(caloriesConsumed = uiState.eatenCalories,300)
+        CalorieSection(caloriesConsumed = uiState.eatenCalories, caloriesNeeded = uiState.neededCalories)
         NutrientsSection(
             protein = uiState.eatenProtein,
             carbs = uiState.eatenCarbs,
@@ -47,7 +47,7 @@ fun StatisticScreen(
 @Composable
 fun CalorieSection(
     caloriesConsumed: Double,
-    caloriesNeeded: Int
+    caloriesNeeded: Double
 ) {
     Surface(
         modifier = Modifier

@@ -19,6 +19,9 @@ class StatisticScreenViewModel (private val eatenFoodRepository: FoodRepository)
         findFood()
     }
 
+    fun newCaloriesNeeded(neededCalories: Double) {
+        _uiState.value = _uiState.value.copy(neededCalories = neededCalories)
+    }
     private fun findFood() = viewModelScope.launch {
         eatenFoodRepository.getAlphabetizedFoods().collect { foods ->
             updateUiState(foods)
@@ -48,5 +51,6 @@ data class StatisticUiState(
     val eatenProtein: Double = 0.0,
     val eatenCarbs: Double = 0.0,
     val eatenFat: Double = 0.0,
-    val eatenSugar: Double = 0.0
+    val eatenSugar: Double = 0.0,
+    val neededCalories: Double = 0.0
 )

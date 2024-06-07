@@ -16,6 +16,7 @@ sealed class Screens(
     data object StatisticScreen : Screens("Home", Icons.Default.Home, R.string.homebottombar)
     data object FoodScreen : Screens("Food",Icons.Default.Add, R.string.foodbottombar)
     data object EatenFoodsScreen : Screens("EatenFood", Icons.Default.Star, R.string.eatenfoodbottombar)
+    data object InfoScreen : Screens("Info", null, null)
 
 
 }

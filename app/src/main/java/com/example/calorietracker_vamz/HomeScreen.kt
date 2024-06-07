@@ -12,15 +12,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.example.calorietracker_vamz.navigation.MyBottomBar
 import com.example.calorietracker_vamz.navigation.MyNavHost
+import com.example.calorietracker_vamz.ui.screens.StartViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
 
     val homeNavController = rememberNavController()
+    val startViewModel: StartViewModel = viewModel()
 
     Scaffold (
         topBar = {
@@ -43,7 +46,8 @@ fun HomeScreen() {
 
         ){
             MyNavHost(
-                navController = homeNavController
+                navController = homeNavController,
+                startViewModel = startViewModel
             )
         }
 
