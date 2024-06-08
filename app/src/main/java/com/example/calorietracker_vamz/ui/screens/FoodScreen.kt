@@ -115,7 +115,7 @@ fun FoodItem(modifier: Modifier = Modifier, id: String = "", name: String = "", 
                 contentDescription = stringResource(R.string.picture),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(70.dp)
                     .padding(8.dp)
             )
             Text(

@@ -18,18 +18,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.calorietracker_vamz.InfoWasFilled
 import com.example.calorietracker_vamz.ViewModelInitializer
 
 @Composable
 fun StatisticScreen(
     modifier: Modifier = Modifier,
-    viewModel: StatisticScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)
+    statisticScreenViewModel: StatisticScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)
 
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by statisticScreenViewModel.uiState.collectAsState()
+    val infoWasFilled = InfoWasFilled(context = LocalContext.current)
+    val neededCalories = infoWasFilled.getCaloriesNeeded()
+    statisticScreenViewModel.newCaloriesNeeded(neededCalories)
+
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -180,10 +185,5 @@ fun NutrientItem(name: String, amount: String) {
             style = MaterialTheme.typography.bodyLarge
         )
     }
-}
-@Preview
-@Composable
-fun PreviewStatisticScreen() {
-    StatisticScreen()
 }
 

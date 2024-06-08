@@ -28,7 +28,7 @@ fun MyBottomBar(navController: NavController) {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = backStackEntry?.destination?.route
 
-    if (currentRoute != AddFoodDestination.path && currentRoute != AddFoodDestination.pathWithArgs) {
+    if (currentRoute != AddFoodDestination.path && currentRoute != AddFoodDestination.pathWithArgs && currentRoute != Screens.InfoScreen.path) {
         NavigationBar(
             modifier = Modifier.fillMaxWidth()
         )

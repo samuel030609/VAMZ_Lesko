@@ -14,28 +14,26 @@ import com.example.calorietracker_vamz.ui.screens.AddFoodScreen
 import com.example.calorietracker_vamz.ui.screens.EatenFoodScreen
 import com.example.calorietracker_vamz.ui.screens.FoodScreen
 import com.example.calorietracker_vamz.ui.screens.InfoScreen
-import com.example.calorietracker_vamz.ui.screens.StartViewModel
 import com.example.calorietracker_vamz.ui.screens.StatisticScreen
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun MyNavHost(
     navController: NavHostController,
-    startViewModel: StartViewModel
+    startDestination: String
+
 ) {
-    val startDestination = if (startViewModel.wasInfoFilled.value) {
-        Screens.StatisticScreen.path
-    } else {
-        Screens.InfoScreen.path
-    }
+
+
     NavHost(navController = navController,
         startDestination = startDestination
     ) {
 
         composable(Screens.InfoScreen.path) {
             InfoScreen(
-                startViewModel = startViewModel,
-                navigateToStatisticScreen = { navController.navigate(Screens.StatisticScreen.path) },
+                navigateToStatisticScreen = {
+                    navController.navigate(Screens.StatisticScreen.path)
+                }
             )
         }
 
@@ -60,7 +58,7 @@ fun MyNavHost(
                 type = NavType.IntType
             })
         ) {
-            AddFoodScreen(navigateBack = { navController.popBackStack() })
+            AddFoodScreen(navigateBack = { navController.navigate(Screens.FoodScreen.path) })
         }
     }
 }

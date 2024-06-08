@@ -8,7 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class StatisticScreenViewModel (private val eatenFoodRepository: FoodRepository): ViewModel() {
+class StatisticScreenViewModel (
+    private val eatenFoodRepository: FoodRepository
+): ViewModel() {
 
     private val _uiState = MutableStateFlow(StatisticUiState())
     val uiState: StateFlow<StatisticUiState> = _uiState
@@ -33,13 +35,15 @@ class StatisticScreenViewModel (private val eatenFoodRepository: FoodRepository)
         val eatenCarbs = foods.sumOf { it.carbs }
         val eatenFat = foods.sumOf { it.fat }
         val eatenSugar = foods.sumOf { it.sugar }
+        val neededCalories = _uiState.value.neededCalories
 
         _uiState.value = StatisticUiState(
             eatenCalories = eatenCalories,
             eatenProtein = eatenProtein,
             eatenCarbs = eatenCarbs,
             eatenFat = eatenFat,
-            eatenSugar = eatenSugar
+            eatenSugar = eatenSugar,
+            neededCalories = neededCalories
         )
     }
 
