@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.stateIn
 
 class FoodScreenViewModel (foodRepository: FoodRepository) : ViewModel() {
 
+
+
     val foodUiState: StateFlow<FoodsUiState> =
         foodRepository.getAlphabetizedFoods().map { FoodsUiState(it) }
             .stateIn(

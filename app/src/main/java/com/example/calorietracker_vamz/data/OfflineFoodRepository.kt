@@ -6,7 +6,6 @@ class OfflineFoodRepository (private val foodDao: FoodDao) : FoodRepository {
 
         override fun getAlphabetizedFoods(): Flow<List<Food>> = foodDao.getAlphabetizedFoods()
 
-        override fun searchDatabase(searchQuery: String): Flow<List<Food>?> = foodDao.searchDatabase(searchQuery)
 
         override suspend fun insert(food: Food) {
             foodDao.insert(food)

@@ -8,8 +8,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
-class EatenFoodsViewModel (eatenFoodRepository: FoodRepository): ViewModel() {
+class EatenFoodsViewModel (private val eatenFoodRepository: FoodRepository): ViewModel() {
 
     val foodUiState: StateFlow<EatenFoodUiState> =
         eatenFoodRepository.getAlphabetizedFoods().map { EatenFoodUiState(it) }
@@ -21,6 +22,12 @@ class EatenFoodsViewModel (eatenFoodRepository: FoodRepository): ViewModel() {
 
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
+    }
+
+    fun deleteFood(food: Food) {
+        viewModelScope.launch {
+            eatenFoodRepository.delete(food)
+        }
     }
 }
 

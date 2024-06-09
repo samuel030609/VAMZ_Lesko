@@ -1,6 +1,7 @@
 package com.example.calorietracker_vamz.ui.screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,13 +10,20 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -36,14 +44,34 @@ fun FoodScreen(
     navigateToEatenFoodScreen: (Int) -> Unit,
     viewModel: FoodScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)
 ) {
-    val foodUiState by viewModel.foodUiState.collectAsState()
+    var queryForSearch by remember { mutableStateOf("") }
 
-    val foods = foodUiState.foods
+    Column {
+        Row (horizontalArrangement = Arrangement.Center) {
+            TextField(
+                value = queryForSearch,
+                onValueChange = {newQuery -> queryForSearch = newQuery},
+                label = { Text("Search") },
+                leadingIcon = {
+                    Icon(Icons.Default.Search, contentDescription = "Search")
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            )
+        }
 
-    FoodBody(
-        foods = foods,
-        onFoodClick = { foodId -> navigateToEatenFoodScreen(foodId) }
-    )
+        val foodUiState by viewModel.foodUiState.collectAsState()
+
+        val foods = foodUiState.foods.filter { it.name.contains(queryForSearch, ignoreCase = true) }
+
+        FoodBody(
+            foods = foods,
+            onFoodClick = { foodId -> navigateToEatenFoodScreen(foodId) }
+        )
+    }
+
+
 
 }
 
@@ -86,7 +114,6 @@ fun FoodList(
         items(items = foods, key = { food -> food.id }) { food ->
             FoodItem(
                 modifier = Modifier.padding(8.dp),
-                id = food.id.toString(),
                 name = food.name,
                 picture = food.picture,
                 onClick = { onFoodClick(food.id) }
@@ -96,7 +123,7 @@ fun FoodList(
 }
 
 @Composable
-fun FoodItem(modifier: Modifier = Modifier, id: String = "", name: String = "", picture: String = "", onClick: () -> Unit) {
+fun FoodItem(modifier: Modifier = Modifier, name: String = "", picture: String = "", onClick: () -> Unit) {
     Card(
         modifier = modifier
             .clickable { onClick() }

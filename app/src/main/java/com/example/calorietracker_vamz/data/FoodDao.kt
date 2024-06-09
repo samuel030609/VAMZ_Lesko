@@ -27,6 +27,4 @@ interface FoodDao {
     @Query("SELECT * FROM food_table ORDER BY name ASC")
     fun getAlphabetizedFoods(): Flow<List<Food>>
 
-    @Query("SELECT * FROM food_table WHERE name LIKE :searchQuery|| '%' ORDER BY name ASC")
-    fun searchDatabase(searchQuery: String): Flow<List<Food>>
 }

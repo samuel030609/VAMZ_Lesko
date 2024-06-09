@@ -8,8 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,7 +21,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,12 +35,13 @@ fun EatenFoodScreen(viewModel: EatenFoodsViewModel = viewModel(factory = ViewMod
 
     val eatenFoods = foodUiState.foods
 
-    EatenFoodBody(foods = eatenFoods)
+    EatenFoodBody(viewModel ,foods = eatenFoods)
 
 }
 
 @Composable
 fun EatenFoodBody(
+    viewModel: EatenFoodsViewModel,
     foods: List<Food>,
     modifier: Modifier = Modifier
 ) {
@@ -53,6 +57,7 @@ fun EatenFoodBody(
             )
         } else {
             EatenFoodList(
+                viewModel,
                 foods = foods,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
             )
@@ -63,6 +68,7 @@ fun EatenFoodBody(
 
 @Composable
 fun EatenFoodList(
+    viewModel: EatenFoodsViewModel,
     foods: List<Food>,
     modifier: Modifier = Modifier
 ) {
@@ -70,21 +76,19 @@ fun EatenFoodList(
     {
         items(items = foods, key = { food -> food.id }) { food ->
             EatenFoodItem(
+                viewModel,
                 modifier = Modifier.padding(8.dp),
-                id = food.id.toString(),
-                name = food.name,
-                calories = food.calories.toString(),
-                protein = food.protein.toString(),
-                carbs = food.carbs.toString(),
-                fat = food.fat.toString(),
-                sugar = food.sugar.toString()
+                food = food
             )
         }
     }
 }
 
 @Composable
-fun EatenFoodItem(modifier: Modifier = Modifier, id: String = "", name: String = "", calories: String = "", protein: String = "", carbs: String = "", fat: String = "", sugar: String = "") {
+fun EatenFoodItem(
+    viewModel: EatenFoodsViewModel,
+    modifier: Modifier = Modifier,
+    food: Food) {
     Card(
         modifier = modifier
             .padding(8.dp)
@@ -93,12 +97,14 @@ fun EatenFoodItem(modifier: Modifier = Modifier, id: String = "", name: String =
         shape = RoundedCornerShape(8.dp)
     ) {
 
-        Column (modifier = Modifier.padding(16.dp).fillMaxWidth(),
+        Column (modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         )
         {
             Text(
-                text = "Name: $name",
+                text = "Name: ${food.name}",
                 fontSize = 20.sp,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 style = MaterialTheme.typography.headlineMedium
@@ -106,16 +112,18 @@ fun EatenFoodItem(modifier: Modifier = Modifier, id: String = "", name: String =
             Row (modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween){
                 Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    InfoForFood("ID" , id)
-                    InfoForFood("Carbs", carbs)
+                    InfoForFood("Calories", food.calories.toString())
+                    InfoForFood("Carbs", food.carbs.toString())
                 }
                 Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    InfoForFood("Calories", calories)
-                    InfoForFood("Fat", fat)
+                    InfoForFood("Protein", food.protein.toString())
+                    InfoForFood("Fat", food.fat.toString())
                 }
                 Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    InfoForFood("Protein", protein)
-                    InfoForFood("Sugar", sugar)
+                    InfoForFood("Sugar", food.sugar.toString())
+                    IconButton(onClick = { viewModel.deleteFood(food) }) {
+                        Icon(Icons.Default.Delete, contentDescription = "Delete")
+                    }
                 }
             }
         }
@@ -139,34 +147,4 @@ fun InfoForFood(name: String, value: String) {
         )
     }
 
-}
-
-@Composable
-fun InfoCardForFood(name: String, value: String) {
-    val backgroundColor = MaterialTheme.colorScheme.primary
-    Card(
-        modifier = Modifier
-            .padding(8.dp),
-        colors = CardDefaults.cardColors(containerColor = backgroundColor, contentColor = Color.White),
-        shape = RoundedCornerShape(8.dp)
-    ) {
-        Column (
-            modifier = Modifier
-                .padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = name,
-                fontSize = 16.sp,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-            Text(
-                text = value,
-                fontSize = 16.sp,
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-        }
-    }
 }
