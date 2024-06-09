@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -36,107 +37,122 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
     val uiState by viewModel.uiState.collectAsState()
     val infoWasFilled = InfoWasFilled(context = LocalContext.current)
     val showSnackbar = remember { mutableStateOf(false) }
-    Column (modifier = Modifier
+    LazyColumn (modifier = Modifier
         .fillMaxSize()
         .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween) {
-        OutlinedTextField(value = uiState.age.toString(),
-            onValueChange = {viewModel.newAge(it.toInt())},
-            label = { Text("Age") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            ),
-            modifier = Modifier.fillMaxWidth(),
-            enabled = true,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        OutlinedTextField(value = uiState.weight.toString(),
-            onValueChange = {viewModel.newWeight(it.toInt())},
-            label = { Text("Weight") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            ),
-            modifier = Modifier.fillMaxWidth(),
-            enabled = true,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        OutlinedTextField(value = uiState.height.toString(),
-            onValueChange = {viewModel.newHeight(it.toInt())},
-            label = { Text("Height") },
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
-            ),
-            modifier = Modifier.fillMaxWidth(),
-            enabled = true,
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-        )
-        Row (modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround) {
-            Column (horizontalAlignment = Alignment.CenterHorizontally){
-                Text(text = "Male")
-                RadioButton(
-                    selected = uiState.gender == "Male",
-                    onClick = { viewModel.newGender("Male") },
-                    colors = RadioButtonDefaults.colors(
-                        selectedColor = Color.Red,
-                        unselectedColor = Color.Blue
-                )
-                )
-            }
-            Column (horizontalAlignment = Alignment.CenterHorizontally){
-                Text(text = "Female")
-                RadioButton(
-                    selected = uiState.gender == "Female",
-                    onClick = { viewModel.newGender("Female") },
-                    colors = RadioButtonDefaults.colors(
-                        selectedColor = Color.Red,
-                        unselectedColor = Color.Blue
-                    )
-                )
-            }
+        verticalArrangement = Arrangement.SpaceEvenly) {
 
+        item {
+            OutlinedTextField(value = uiState.age.toString(),
+                onValueChange = {viewModel.newAge(it.toIntOrNull() ?: 0)},
+                label = { Text("Age") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                enabled = true,
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
         }
-
-        Button(
-            onClick = {
-                if (viewModel.isInfoValid()) {
-                    viewModel.calculateCalories()
-                    val caloriesNeeded = viewModel.getNeededCalories()
-                    infoWasFilled.setInfoWasFilled(true)
-                    infoWasFilled.setCaloriesNeeded(caloriesNeeded)
-
-                    navigateToStatisticScreen()
-                } else {
-                    showSnackbar.value = true
+        item {
+            OutlinedTextField(value = uiState.weight.toString(),
+                onValueChange = {viewModel.newWeight(it.toIntOrNull() ?: 0)},
+                label = { Text("Weight") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                enabled = true,
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+        }
+        item {
+            OutlinedTextField(value = uiState.height.toString(),
+                onValueChange = {viewModel.newHeight(it.toIntOrNull() ?: 0)},
+                label = { Text("Height") },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    disabledContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                ),
+                modifier = Modifier.fillMaxWidth(),
+                enabled = true,
+                singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+        }
+        item {
+            Row (modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround) {
+                Column (horizontalAlignment = Alignment.CenterHorizontally){
+                    Text(text = "Male")
+                    RadioButton(
+                        selected = uiState.gender == "Male",
+                        onClick = { viewModel.newGender("Male") },
+                        colors = RadioButtonDefaults.colors(
+                            selectedColor = Color.Red,
+                            unselectedColor = Color.Blue
+                        )
+                    )
+                }
+                Column (horizontalAlignment = Alignment.CenterHorizontally){
+                    Text(text = "Female")
+                    RadioButton(
+                        selected = uiState.gender == "Female",
+                        onClick = { viewModel.newGender("Female") },
+                        colors = RadioButtonDefaults.colors(
+                            selectedColor = Color.Red,
+                            unselectedColor = Color.Blue
+                        )
+                    )
                 }
 
-
             }
-        ) {
-            Text(text = "Save")
         }
 
-        if (showSnackbar.value) {
-            Snackbar(
-                action = {
-                    TextButton(onClick = { showSnackbar.value = false }) {
-                        Text("Close")
+        item {
+            Button(
+                onClick = {
+                    if (viewModel.isInfoValid()) {
+                        viewModel.calculateCalories()
+                        val caloriesNeeded = viewModel.getNeededCalories()
+                        infoWasFilled.setInfoWasFilled(true)
+                        infoWasFilled.setCaloriesNeeded(caloriesNeeded)
+
+                        navigateToStatisticScreen()
+                    } else {
+                        showSnackbar.value = true
                     }
-                },
-                modifier = Modifier.padding(16.dp)
+
+
+                }
             ) {
-                Text("You need to fill all information correctly")
+                Text(text = "Save")
             }
+        }
+
+
+        if (showSnackbar.value) {
+            item {
+                Snackbar(
+                    action = {
+                        TextButton(onClick = { showSnackbar.value = false }) {
+                            Text("Close")
+                        }
+                    },
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Text("You need to fill all information correctly")
+                }
+            }
+
         }
 
     }

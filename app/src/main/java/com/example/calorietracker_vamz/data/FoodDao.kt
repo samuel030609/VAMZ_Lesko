@@ -20,6 +20,8 @@ interface FoodDao {
     @Delete
     suspend fun delete(food: Food)
 
+    @Query("DELETE FROM food_table")
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM food_table WHERE id = :id")
     fun getFood(id: Int): Flow<Food>

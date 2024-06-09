@@ -3,8 +3,10 @@ package com.example.calorietracker_vamz.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +23,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,7 +51,9 @@ fun EatenFoodBody(
 ) {
     Column (
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(4.dp),
     ) {
         if(foods.isEmpty()) {
             Text(
@@ -91,7 +97,7 @@ fun EatenFoodItem(
     food: Food) {
     Card(
         modifier = modifier
-            .padding(8.dp)
+            .padding(4.dp)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(8.dp)
@@ -100,31 +106,31 @@ fun EatenFoodItem(
         Column (modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         )
         {
             Text(
-                text = "Name: ${food.name}",
-                fontSize = 20.sp,
+                text = food.name,
+                fontSize = 25.sp,
+                fontWeight = W600,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 style = MaterialTheme.typography.headlineMedium
             )
             Row (modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween){
-                Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    InfoForFood("Calories", food.calories.toString())
-                    InfoForFood("Carbs", food.carbs.toString())
-                }
-                Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    InfoForFood("Protein", food.protein.toString())
-                    InfoForFood("Fat", food.fat.toString())
-                }
-                Column (horizontalAlignment = Alignment.CenterHorizontally) {
-                    InfoForFood("Sugar", food.sugar.toString())
-                    IconButton(onClick = { viewModel.deleteFood(food) }) {
-                        Icon(Icons.Default.Delete, contentDescription = "Delete")
-                    }
-                }
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically) {
+                InfoForFood("Calories", food.calories.toString())
+                InfoForFood("Carbs", food.carbs.toString())
+                InfoForFood("Protein", food.protein.toString())
+
+            }
+            Row (modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically) {
+                InfoForFood("Fat", food.fat.toString())
+                InfoForFood("Sugar", food.sugar.toString())
+                MyIconForFood(viewModel, food)
             }
         }
     }
@@ -132,19 +138,56 @@ fun EatenFoodItem(
 
 @Composable
 fun InfoForFood(name: String, value: String) {
-    Column (
-        horizontalAlignment = Alignment.CenterHorizontally
+    Card (
+        modifier = Modifier
+            .padding(8.dp)
+            .size(70.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(containerColor = Color.Blue, contentColor = Color.White)
+
     ) {
-        Text(
-            text = name,
-            fontSize = 16.sp,
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Text(
-            text = value,
-            fontSize = 16.sp,
-            style = MaterialTheme.typography.bodyMedium
-        )
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = name,
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                text = value,
+                fontSize = 16.sp,
+                style = MaterialTheme.typography.bodyMedium
+            )
+        }
+    }
+}
+
+@Composable
+fun MyIconForFood(
+    viewModel: EatenFoodsViewModel,
+    food: Food
+) {
+    Card (
+        modifier = Modifier
+            .padding(8.dp)
+            .size(70.dp)
+    ) {
+        Column (
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            IconButton(onClick = { viewModel.deleteFood(food) }) {
+                Icon(
+                    Icons.Default.Delete, contentDescription = "Delete",
+                    tint = Color.Red, modifier = Modifier.size(30.dp))
+            }
+        }
+
     }
 
 }

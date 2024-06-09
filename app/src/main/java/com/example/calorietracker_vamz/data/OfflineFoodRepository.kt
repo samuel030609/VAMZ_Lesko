@@ -21,4 +21,8 @@ class OfflineFoodRepository (private val foodDao: FoodDao) : FoodRepository {
 
         override fun getFood(id: Int): Flow<Food?> = foodDao.getFood(id)
 
+        override suspend fun deleteAll() {
+            foodDao.deleteAll()
+        }
+
 }
