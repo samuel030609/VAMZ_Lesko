@@ -31,12 +31,16 @@ class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, pri
                 .first())
         }
     }
+
+    fun isQuantityValid(): Boolean {
+        return quantity.value in 1..1000
+    }
     
     fun addEatenFood() {
         viewModelScope.launch {
             val food = foodUiState.value?.food
             val quantity = quantity.value
-            if (food != null && quantity > 0) {
+            if (food != null && isQuantityValid()) {
                 val newFood = food.copy(
                     calories = String.format("%.2f", food.calories / 100 * quantity).replace(",", ".").toDouble(),
                     protein = String.format("%.2f", food.protein / 100 * quantity).replace(",", ".").toDouble(),

@@ -21,7 +21,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight.Companion.W500
+import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.calorietracker_vamz.InfoWasFilled
 import com.example.calorietracker_vamz.ViewModelInitializer
@@ -64,7 +67,7 @@ fun CalorieSection(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .border(1.dp, Color.Blue, RoundedCornerShape(4.dp)),
+            .border(3.dp, Color.Blue, RoundedCornerShape(4.dp)),
         color = Color.White,
         shape = RoundedCornerShape(4.dp)
     ) {
@@ -77,6 +80,8 @@ fun CalorieSection(
             ) {
                 Text(
                     text = "Calories",
+                    fontSize = 25.sp,
+                    fontWeight = W600,
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
@@ -93,11 +98,15 @@ fun CalorieSection(
                 ) {
                     Text(
                         text = "Calories Consumed",
+                        fontSize = 20.sp,
+                        fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "$caloriesConsumed",
+                        fontSize = 20.sp,
+                        fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -108,11 +117,15 @@ fun CalorieSection(
                 ) {
                     Text(
                         text = "Calories Needed",
+                        fontSize = 20.sp,
+                        fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "$caloriesNeeded",
+                        fontSize = 20.sp,
+                        fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
@@ -146,6 +159,8 @@ fun NutrientsSection(
             ) {
                 Text(
                     text = "Nutrients",
+                    fontSize = 25.sp,
+                    fontWeight = W600,
                     style = MaterialTheme.typography.bodyLarge
                 )
             }
@@ -183,11 +198,15 @@ fun NutrientItem(name: String, amount: String) {
     ) {
         Text(
             text = name,
+            fontSize = 20.sp,
+            fontWeight = W500,
             style = MaterialTheme.typography.bodyLarge
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = amount,
+            fontSize = 20.sp,
+            fontWeight = W500,
             style = MaterialTheme.typography.bodyLarge
         )
     }

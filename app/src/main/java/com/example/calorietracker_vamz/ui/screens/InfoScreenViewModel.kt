@@ -37,7 +37,8 @@ class InfoScreenViewModel : ViewModel() {
             655 + (9.5 * weight) + (1.85 * height) - (4.7 * age)
 
         }
-        _uiState.value = _uiState.value.copy(neededCalories = calories)
+        val modifiedCalories = String.format("%.2f", calories * 1.2).replace(",", ".").toDouble()
+        _uiState.value = _uiState.value.copy(neededCalories = modifiedCalories)
     }
 
     fun getNeededCalories(): Double {
@@ -49,7 +50,7 @@ class InfoScreenViewModel : ViewModel() {
         val weight = _uiState.value.weight
         val height = _uiState.value.height
         val gender = _uiState.value.gender
-        return age != 0 && weight != 0 && height != 0 && gender.isNotEmpty()
+        return age in 1..89 && weight in 1..150 && height in 1..220 && gender.isNotEmpty()
     }
 
     data class InfoUiState(
