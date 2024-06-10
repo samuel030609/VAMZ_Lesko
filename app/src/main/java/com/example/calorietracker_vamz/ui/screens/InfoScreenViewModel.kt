@@ -56,12 +56,12 @@ class InfoScreenViewModel : ViewModel() {
         val gender = _uiState.value.gender
         return age in 1..89 && weight in 1..150 && height in 1..220 && gender.isNotEmpty()
     }
-
-    data class InfoUiState(
-        val age: Int = 0,
-        val weight: Int = 0,
-        val height: Int = 0,
-        val gender: String = "",
-        val neededCalories: Double = 0.0
-    )
 }
+
+data class InfoUiState(
+    val age: Int = 0,
+    val weight: Int = 0,
+    val height: Int = 0,
+    val gender: String = "",
+    val neededCalories: Double = 0.0
+)

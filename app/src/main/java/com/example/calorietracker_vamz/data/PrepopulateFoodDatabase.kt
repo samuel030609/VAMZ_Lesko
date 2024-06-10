@@ -5,19 +5,18 @@ import android.util.Log
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.calorietracker_vamz.R
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 
 // Trieda, kde sa naplna databáza pri vzniku
 class PrepopulateFoodDatabase (private val context: Context) : RoomDatabase.Callback() {
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(db: SupportSQLiteDatabase) {
         super.onCreate(db)
         
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             prePopulateDatabase(context)
         }
     }
