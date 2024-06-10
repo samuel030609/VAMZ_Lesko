@@ -1,34 +1,212 @@
 [
   {
-    "name": "jahoda",
-    "calories": 10,
-    "protein": 1,
-    "carbs": 20,
-    "fat": 0,
-    "sugar" : 15,
+    "name": "Strawberry",
+    "calories": 34,
+    "protein": 0.8,
+    "carbs": 6,
+    "fat": 0.4,
+    "sugar" : 4,
     "picture": "https://www.zahradnici.sk/image/cache/catalog/jahody/fruit-6720525_960_720-wd-1000x1000.jpg"
 
   },
   {
-    "name": "jablko",
-    "calories": 50,
-    "protein": 1,
-    "carbs": 10,
+    "name": "Apple",
+    "calories": 73,
+    "protein": 0.4,
+    "carbs": 17,
     "fat": 0,
-    "sugar" : 5,
+    "sugar" : 12,
     "picture": "https://www.ovocnickovo.sk/wp-content/uploads/2020/04/jablko_cervene.png"
 
   },
-
-
   {
-    "name": "hruska",
-    "calories": 50,
-    "protein": 1,
-    "carbs": 20,
-    "fat": 0,
-    "sugar" : 5,
+    "name": "Pear",
+    "calories": 82,
+    "protein": 0.6,
+    "carbs": 19,
+    "fat": 0.5,
+    "sugar" : 14,
     "picture": "https://www.zahradnici.sk/image/cache/catalog/hrusky/pyrus-hruska-konferencia__-wd-1000x1000.jpg"
 
+  },
+  {
+    "name": "Cherry",
+    "calories": 69,
+    "protein": 1,
+    "carbs": 14,
+    "fat": 0.4,
+    "sugar": 13,
+    "picture": "https://www.100daysofrealfood.com/wp-content/uploads/2023/07/shutterstock_1828768448.jpg"
+  },
+  {
+    "name": "Tangerine",
+    "calories": 45,
+    "protein": 0.6,
+    "carbs": 10,
+    "fat": 0.2,
+    "sugar": 7,
+    "picture": "https://img.freepik.com/free-psd/tangerine-fruit-isolated-transparent-background_191095-15468.jpg"
+  },
+  {
+    "name": "Soft-boiled egg",
+    "calories": 148,
+    "protein": 12,
+    "carbs": 1,
+    "fat": 10,
+    "sugar": 0,
+    "picture": "https://www.culinaryhill.com/wp-content/uploads/2021/02/How-to-Soft-Boil-Eggs-Culinary-Hill-1200x800-1.jpg"
+  },
+  {
+    "name": "Hard-boiled egg",
+    "calories": 152,
+    "protein": 13,
+    "carbs": 1,
+    "fat": 11,
+    "sugar": 0,
+    "picture": "https://images.eatthismuch.com/img/39296_ldementhon_81a2d45f-cc37-4e12-bb3c-ab12c90c29ce.jpg"
+  },
+  {
+    "name": "Scrambled eggs",
+    "calories": 166,
+    "protein": 12,
+    "carbs": 2,
+    "fat": 12,
+    "sugar": 0,
+    "picture": "https://cdn.loveandlemons.com/wp-content/uploads/2021/05/scrambled-eggs.jpg"
+  },
+  {
+    "name": "Potato bread",
+    "calories": 257,
+    "protein": 8,
+    "carbs": 51,
+    "fat": 1,
+    "sugar": 0.6,
+    "picture": "https://www.homecookingadventure.com/wp-content/uploads/2022/01/potato-bread.jpg"
+  },
+  {
+    "name": "Whole grain bread",
+    "calories": 266,
+    "protein": 10,
+    "carbs": 48,
+    "fat": 4,
+    "sugar": 3,
+    "picture": "https://www.chainbaker.com/wp-content/uploads/2022/02/IMG_2362.jpg"
+  },
+  {
+    "name": "Schnitzel",
+    "calories": 314,
+    "protein": 22,
+    "carbs": 15,
+    "fat": 18,
+    "sugar": 1,
+    "picture": "https://staticcookist.akamaized.net/wp-content/uploads/sites/22/2021/05/thumb-1200x675.jpg"
+  },
+  {
+    "name": "Steak",
+    "calories": 69,
+    "protein": 1,
+    "carbs": 14,
+    "fat": 0.4,
+    "sugar": 13,
+    "picture": "https://www.allrecipes.com/thmb/3cixVDmAtbb2hYxoFLVJ4VPQ7rA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/143809-best-steak-marinade-in-existence-ARMag-1x1-1-8105b6b8e5cb4931ba8061f0425243dd.jpg"
+  },
+  {
+    "name": "Mozzarela",
+    "calories": 236,
+    "protein": 17,
+    "carbs": 2,
+    "fat": 18,
+    "sugar": 1,
+    "picture": "https://www.galbani.co.uk/wp-content/uploads/2021/05/Galbani-Mozza-125g-NSR.jpg"
+  },
+  {
+    "name": "Butter",
+    "calories": 730,
+    "protein": 0.7,
+    "carbs": 0.6,
+    "fat": 82,
+    "sugar": 0.6,
+    "picture": "https://cdn.britannica.com/27/122027-050-EAA86783/Butter.jpg"
+  },
+  {
+    "name": "Chocolate cheesecake",
+    "calories": 164,
+    "protein": 17,
+    "carbs": 17,
+    "fat": 3,
+    "sugar": 0,
+    "picture": "https://joyfoodsunshine.com/wp-content/uploads/2022/02/chocolate-cheesecake-recipe-5.jpg"
+  },
+  {
+    "name": "Honey",
+    "calories": 333,
+    "protein": 0.3,
+    "carbs": 82,
+    "fat": 0,
+    "sugar": 80,
+    "picture": "https://www.harniva.com/assets/backend/admin/plugins/source/hakkimizda/kalitelibal.png"
+  },
+  {
+    "name": "Beef broth",
+    "calories": 56,
+    "protein": 4,
+    "carbs": 7,
+    "fat": 1,
+    "sugar": 0,
+    "picture": "https://www.budgetbytes.com/wp-content/uploads/2022/04/Vegetable-Beef-Soup-bowl.jpg"
+  },
+  {
+    "name": "Chicken broth",
+    "calories": 83,
+    "protein": 10,
+    "carbs": 6,
+    "fat": 3,
+    "sugar": 0,
+    "picture": "https://www.inspiredtaste.net/wp-content/uploads/2018/09/Easy-Chicken-Noodle-Soup-Recipe-1200.jpg"
+  },
+  {
+    "name": "Roasted potatoes",
+    "calories": 141,
+    "protein": 2,
+    "carbs": 26,
+    "fat": 3,
+    "sugar": 0,
+    "picture": "https://www.recipetineats.com/wp-content/uploads/2023/09/Easy-roast-potatoes_4a.jpg"
+  },
+  {
+    "name": "Rice",
+    "calories": 213,
+    "protein": 4,
+    "carbs": 39,
+    "fat": 4,
+    "sugar": 0.3,
+    "picture": "https://www.realsimple.com/thmb/NI2xqE0QLcUrI-jMb8y1858kPnc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/long-grain-white-rice-gettyimages-806770568-f3c1d7887feb475783bb3e3b592066e3.jpg"
+  },
+  {
+    "name": "Ham",
+    "calories": 92,
+    "protein": 19,
+    "carbs": 0.5,
+    "fat": 1,
+    "sugar": 0.4,
+    "picture": "https://assets2.kansascitysteaks.com/dyn-images/pdp_hero/Bone-in_Spiral_Slice-86b384db85fb7a7ea7866f723168cfe1.jpg"
+  },
+  {
+    "name": "Cheese",
+    "calories": 263,
+    "protein": 30,
+    "carbs": 1,
+    "fat": 15,
+    "sugar": 0.1,
+    "picture": "https://assets.clevelandclinic.org/transform/19bdcc5a-51a0-47f4-9cee-ed656e2779ea/Cheese-120990404-770x533-1_jpg"
+  },
+  {
+    "name": "Salami",
+    "calories": 467,
+    "protein": 23,
+    "carbs": 0.2,
+    "fat": 42,
+    "sugar": 0,
+    "picture": "https://cdn.britannica.com/19/237019-050-E91E7679/Variety-of-sliced-Italian-salami.jpg"
   }
 ]

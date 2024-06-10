@@ -88,7 +88,7 @@ fun CalorieSection(
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
 
                 Column(
@@ -97,14 +97,14 @@ fun CalorieSection(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Calories Consumed",
+                        text = "Consumed",
                         fontSize = 20.sp,
                         fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "$caloriesConsumed",
+                        text = String.format("%.2f", caloriesConsumed),
                         fontSize = 20.sp,
                         fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
@@ -116,14 +116,14 @@ fun CalorieSection(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Calories Needed",
+                        text = "Needed",
                         fontSize = 20.sp,
                         fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "$caloriesNeeded",
+                        text = String.format("%.2f", caloriesNeeded),
                         fontSize = 20.sp,
                         fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
@@ -145,7 +145,7 @@ fun NutrientsSection(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .border(1.dp, Color.Blue, RoundedCornerShape(4.dp)),
+            .border(3.dp, Color.Blue, RoundedCornerShape(4.dp)),
         color = Color.White,
         shape = RoundedCornerShape(4.dp)
     )
@@ -175,15 +175,15 @@ fun NutrientsSection(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    NutrientItem(name = "Protein", amount = "$protein g")
-                    NutrientItem(name = "Carbohydrates", amount = "$carbs g")
+                    NutrientItem(name = "Protein", amount = String.format("%.2f", protein))
+                    NutrientItem(name = "Carbohydrates", amount = String.format("%.2f", carbs))
                 }
                 Column(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    NutrientItem(name = "Fat", amount = "$fat g")
-                    NutrientItem(name = "Fiber", amount = "$sugar g")
+                    NutrientItem(name = "Fat", amount = String.format("%.2f", fat))
+                    NutrientItem(name = "Fiber", amount = String.format("%.2f", sugar))
                 }
             }
         }
@@ -204,7 +204,7 @@ fun NutrientItem(name: String, amount: String) {
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = amount,
+            text = "$amount g",
             fontSize = 20.sp,
             fontWeight = W500,
             style = MaterialTheme.typography.bodyLarge

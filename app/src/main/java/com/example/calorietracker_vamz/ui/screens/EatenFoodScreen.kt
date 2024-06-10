@@ -120,16 +120,16 @@ fun EatenFoodItem(
             Row (modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically) {
-                InfoForFood("Calories", food.calories.toString())
-                InfoForFood("Carbs", food.carbs.toString())
-                InfoForFood("Protein", food.protein.toString())
+                InfoForFood("Calories", String.format("%.2f", food.calories))
+                InfoForFood("Carbs", String.format("%.2f", food.carbs))
+                InfoForFood("Protein", String.format("%.2f", food.protein))
 
             }
             Row (modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically) {
-                InfoForFood("Fat", food.fat.toString())
-                InfoForFood("Sugar", food.sugar.toString())
+                InfoForFood("Fat", String.format("%.2f", food.fat))
+                InfoForFood("Sugar", String.format("%.2f", food.sugar))
                 MyIconForFood(viewModel, food)
             }
         }

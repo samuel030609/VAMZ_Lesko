@@ -3,6 +3,7 @@ package com.example.calorietracker_vamz.ui.screens
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlin.math.roundToInt
 
 class InfoScreenViewModel : ViewModel() {
 
@@ -37,8 +38,9 @@ class InfoScreenViewModel : ViewModel() {
             655 + (9.5 * weight) + (1.85 * height) - (4.7 * age)
 
         }
-        val modifiedCalories = String.format("%.2f", calories * 1.2).replace(",", ".").toDouble()
-        _uiState.value = _uiState.value.copy(neededCalories = modifiedCalories)
+        val helpCalories = (calories * 1.2)
+        val helpCalories2 = helpCalories.roundToInt().toDouble()
+        _uiState.value = _uiState.value.copy(neededCalories = helpCalories2)
     }
 
     fun getNeededCalories(): Double {
