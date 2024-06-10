@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.calorietracker_vamz.R
 
+//Trieda, ktorá obsahuje destinácie väčšiny mojich obrazoviek v aplikáciíí
 sealed class Screens(
     val path: String,
     val icon: ImageVector?,

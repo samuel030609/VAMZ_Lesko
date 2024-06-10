@@ -6,6 +6,7 @@ import com.example.calorietracker_vamz.data.AppContainer2
 import com.example.calorietracker_vamz.data.AppDataContainer
 import com.example.calorietracker_vamz.data.AppDataContainer2
 
+//Trieda, ktorá slúži na to aby sa dalo pristupovať k AppContaineru a AppContaineru2 z celého projektu
 class InventoryApplication : Application(){
 
     lateinit var container: AppContainer

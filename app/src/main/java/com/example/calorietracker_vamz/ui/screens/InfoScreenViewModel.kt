@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.math.roundToInt
 
+//ViewModel pre obrazovku InfoScreen, ktorý si udržiava v stave informácie o veku, váhe, výške, pohlaví a aj potrebných kalóriach používateľa
+//ktoré sa z vyššie uvedených údajov vypočítajú
 class InfoScreenViewModel : ViewModel() {
 
     private val _uiState = MutableStateFlow(InfoUiState())

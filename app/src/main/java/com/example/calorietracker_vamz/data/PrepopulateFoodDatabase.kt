@@ -10,6 +10,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 
+// Trieda, kde sa naplna databáza pri vzniku
 class PrepopulateFoodDatabase (private val context: Context) : RoomDatabase.Callback() {
 
     @OptIn(DelicateCoroutinesApi::class)

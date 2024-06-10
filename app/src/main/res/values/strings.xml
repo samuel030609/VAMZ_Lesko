@@ -1,10 +1,32 @@
 <resources>
-    <string name="app_name">CalorieTracker_VAMZ</string>
+    <string name="app_name">CalorieTracker</string>
     <string name="hometopbar">Home</string>
     <string name="homebottombar">Home</string>
     <string name="foodbottombar">Food</string>
     <string name="eatenfoodbottombar">Eaten Food</string>
     <string name="picture">Picture of food</string>
-    <string name="quantity">Quantity in grams*</string>
+    <string name="quantity">Quantity in grams</string>
+    <string name="calories">Calories(kcal)</string>
+    <string name="calories2">Calories</string>
+    <string name="fat">Fat(g)</string>
+    <string name="carbs">Carbs(g)</string>
+    <string name="protein">Protein(g)</string>
+    <string name="sugar">Sugar(g)</string>
+    <string name="nofood">No food selected</string>
+    <string name="foodfound">No food found</string>
+    <string name="addfood">Add food</string>
+    <string name="close">Close</string>
+    <string name="quantitycontrol">The quantity needs to be between 1 and 1000</string>
+    <string name="foodadded">No food added yet today</string>
+    <string name="age">Age(years)</string>
+    <string name="weight">Weight(kg)</string>
+    <string name="height">Height(cm)</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="save">Save</string>
+    <string name="fillall">You need to fill all information correctly</string>
+    <string name="consumed">Consumed</string>
+    <string name="needed">Needed</string>
+    <string name="nutrients">Nutrients</string>
 
 </resources>

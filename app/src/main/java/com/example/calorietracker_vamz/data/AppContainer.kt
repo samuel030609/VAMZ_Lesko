@@ -2,6 +2,8 @@ package com.example.calorietracker_vamz.data
 
 import android.content.Context
 
+
+//Trieda s interfacom, ktoré obsahujú repository pre jedlo
 interface AppContainer2 {
     val eatenFoodRepository: FoodRepository
 }

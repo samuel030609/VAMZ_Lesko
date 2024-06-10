@@ -34,11 +34,14 @@ import com.example.calorietracker_vamz.ViewModelInitializer
 import com.example.calorietracker_vamz.navigation.NavigationDestination
 
 
+//Destinácia pre poslednú obrazovku, aby sme mohli na ňu prejsť s konkrétnym jedlom
 object AddFoodDestination : NavigationDestination {
     override val path = "add_food"
     const val foodIdKey = "foodId"
     val pathWithArgs = "$path/{$foodIdKey}"
 }
+
+//Obrazovka, pre pridanie jedla do zjedených dnešných jedál
 @Composable
 fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = viewModel(factory = ViewModelInitializer.Factory))
 {
@@ -49,7 +52,9 @@ fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = 
     val quantity by viewModel.quantity.collectAsState()
     val isSnackbar = remember { mutableStateOf(false) }
 
-    LazyColumn (modifier = Modifier.fillMaxSize().padding(16.dp), verticalArrangement = Arrangement.SpaceEvenly) {
+    LazyColumn (modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp), verticalArrangement = Arrangement.SpaceEvenly) {
 
         if (food != null) {
             item {
@@ -64,19 +69,19 @@ fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = 
                         Text(
                             fontSize = 25.sp,
                             fontWeight = W600,
-                            text = "Calories(kcal): ${food.calories}",
+                            text = "${stringResource(R.string.calories)} ${food.calories}",
                             style = MaterialTheme.typography.bodyMedium
                         )
                         Row (modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(
                                 fontSize = 20.sp,
-                                text = "Protein(g): ${food.protein}",
+                                text = "${stringResource(R.string.protein)} ${food.protein}",
                                 style = MaterialTheme.typography.bodyMedium
                             )
                             Text(
                                 fontSize = 20.sp,
-                                text = "Carbs(g): ${food.carbs}",
+                                text = "${stringResource(R.string.carbs)} ${food.carbs}",
                                 style = MaterialTheme.typography.bodyMedium
                             )
 
@@ -86,12 +91,12 @@ fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = 
                             horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(
                                 fontSize = 20.sp,
-                                text = "Fat(g): ${food.fat}",
+                                text = "${stringResource(R.string.fat)} ${food.fat}",
                                 style = MaterialTheme.typography.bodyMedium
                             )
                             Text(
                                 fontSize = 20.sp,
-                                text = "Sugar(g): ${food.sugar}",
+                                text = "${stringResource(R.string.sugar)} ${food.sugar}",
                                 style = MaterialTheme.typography.bodyMedium
                             )
                         }
@@ -100,7 +105,7 @@ fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = 
             }
         } else {
             item {
-                Text(text = "No food selected", style = MaterialTheme.typography.displayMedium)
+                Text(text = stringResource(R.string.nofood), style = MaterialTheme.typography.displayMedium)
             }
 
         }
@@ -136,13 +141,13 @@ fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = 
                         isSnackbar.value = true
                     }
                 }) {
-                    Text(text = "Add food")
+                    Text(text = stringResource(R.string.addfood))
                 }
                 Spacer(modifier = Modifier.weight(1f))
                 Button(onClick = {
                     navigateBack()
                 }) {
-                    Text(text = "Cancel")
+                    Text(text = stringResource(R.string.close))
                 }
             }
         }
@@ -152,12 +157,12 @@ fun AddFoodScreen(navigateBack: () -> Unit, viewModel: AddFoodScreenViewModel = 
                 Snackbar(
                     action = {
                         TextButton(onClick = { isSnackbar.value = false }) {
-                            Text("Close")
+                            Text(stringResource(R.string.close))
                         }
                     },
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Text("The quantity needs to be between 1 and 1000")
+                    Text(stringResource(R.string.quantitycontrol))
                 }
             }
 

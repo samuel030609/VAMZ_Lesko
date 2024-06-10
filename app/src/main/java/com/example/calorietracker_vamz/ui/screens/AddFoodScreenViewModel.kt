@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
+//ViewModel pre obrazovku AddFoodScreen, ktorý si udržiava v stave konkrétne jedlo, ktoré sa pridáva
+//a aj množstvo aké chce užívateľ pridať
+//sú tu metoódy na kontrolu vstupu a na pridanie jedla do databázy
 class AddFoodScreenViewModel(private val savedStateHandle: SavedStateHandle, private val foodRepository: FoodRepository, private val eatenFoodRepository: FoodRepository) : ViewModel() {
 
 

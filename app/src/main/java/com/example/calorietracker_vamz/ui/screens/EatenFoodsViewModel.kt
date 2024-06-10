@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+//ViewModel pre obrazovku EatenFoodsScreen, ktorý si udržiava v stave zoznam všetkých zjedených jedál
+//a obsahuje metódy na ich odstránenie
 class EatenFoodsViewModel (private val eatenFoodRepository: FoodRepository): ViewModel() {
 
     val foodUiState: StateFlow<EatenFoodUiState> =

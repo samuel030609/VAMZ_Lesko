@@ -3,6 +3,9 @@ package com.example.calorietracker_vamz
 import android.content.Context
 import android.content.SharedPreferences
 
+//Trieda, kde sú uložené informácie o tom či už teda používateľ vyplnil prvú obrazovku a o potrebných kalóriach používateľa
+//je to preto aby tieto informácie boli zachované aj po zavretí aplikáie
+//keďže ostatné informácie sú udržiavané tým že sú z databázy netreba ich inak ukladať
 class InfoWasFilled (context: Context) {
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPreference", Context.MODE_PRIVATE)
 

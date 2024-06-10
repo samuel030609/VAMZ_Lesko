@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+//ViewModel pre obrazovku StatisticScreen, ktorý si udržiava v stave informácie o zjedených kalóriách, bielkovinách, sacharidoch, tukoch, cukroch a o potrebných kalóriach
+//a obsahuje metódy na spočítanie týchto údajov z databázy
 class StatisticScreenViewModel (
     private val eatenFoodRepository: FoodRepository
 ): ViewModel() {

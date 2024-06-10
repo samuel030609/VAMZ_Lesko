@@ -21,14 +21,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight.Companion.W500
 import androidx.compose.ui.text.font.FontWeight.Companion.W600
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.calorietracker_vamz.InfoWasFilled
+import com.example.calorietracker_vamz.R
 import com.example.calorietracker_vamz.ViewModelInitializer
 
+//Obrazovka, ktorá zobrazuje informácie používateľov
+//teda kolko kalóriíí zjedol a ďalsie nutričné hodnoty
 @Composable
 fun StatisticScreen(
     statisticScreenViewModel: StatisticScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)
@@ -79,7 +83,7 @@ fun CalorieSection(
                 modifier = Modifier.padding(16.dp)
             ) {
                 Text(
-                    text = "Calories",
+                    text = stringResource(R.string.calories),
                     fontSize = 25.sp,
                     fontWeight = W600,
                     style = MaterialTheme.typography.bodyLarge
@@ -97,7 +101,7 @@ fun CalorieSection(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Consumed",
+                        text = stringResource(R.string.consumed),
                         fontSize = 20.sp,
                         fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
@@ -116,7 +120,7 @@ fun CalorieSection(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Needed",
+                        text = stringResource(R.string.needed),
                         fontSize = 20.sp,
                         fontWeight = W500,
                         style = MaterialTheme.typography.bodyLarge
@@ -158,7 +162,7 @@ fun NutrientsSection(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Nutrients",
+                    text = stringResource(R.string.nutrients),
                     fontSize = 25.sp,
                     fontWeight = W600,
                     style = MaterialTheme.typography.bodyLarge
@@ -175,15 +179,15 @@ fun NutrientsSection(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    NutrientItem(name = "Protein", amount = String.format("%.2f", protein))
-                    NutrientItem(name = "Carbohydrates", amount = String.format("%.2f", carbs))
+                    NutrientItem(name = stringResource(R.string.protein), amount = String.format("%.2f", protein))
+                    NutrientItem(name = stringResource(R.string.carbs), amount = String.format("%.2f", carbs))
                 }
                 Column(
                     modifier = Modifier.weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    NutrientItem(name = "Fat", amount = String.format("%.2f", fat))
-                    NutrientItem(name = "Fiber", amount = String.format("%.2f", sugar))
+                    NutrientItem(name = stringResource(R.string.fat), amount = String.format("%.2f", fat))
+                    NutrientItem(name = stringResource(R.string.sugar), amount = String.format("%.2f", sugar))
                 }
             }
         }

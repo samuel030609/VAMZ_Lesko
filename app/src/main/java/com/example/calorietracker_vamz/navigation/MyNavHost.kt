@@ -1,5 +1,3 @@
-@file:Suppress("NAME_SHADOWING")
-
 package com.example.calorietracker_vamz.navigation
 
 import android.annotation.SuppressLint
@@ -16,6 +14,8 @@ import com.example.calorietracker_vamz.ui.screens.FoodScreen
 import com.example.calorietracker_vamz.ui.screens.InfoScreen
 import com.example.calorietracker_vamz.ui.screens.StatisticScreen
 
+
+//Composable, ktoré riadi navigáciu v mojej aplikácií
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun MyNavHost(

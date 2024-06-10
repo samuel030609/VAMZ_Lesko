@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
+//Definovanie funkcií databázy
 @Dao
 interface FoodDao {
 

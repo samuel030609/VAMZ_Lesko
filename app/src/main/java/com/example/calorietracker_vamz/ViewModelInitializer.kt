@@ -11,6 +11,8 @@ import com.example.calorietracker_vamz.ui.screens.FoodScreenViewModel
 import com.example.calorietracker_vamz.ui.screens.InfoScreenViewModel
 import com.example.calorietracker_vamz.ui.screens.StatisticScreenViewModel
 
+
+//Tu sa inicializujú všetky viewmodely, pomocou factory a initializer
 object ViewModelInitializer {
     val Factory = viewModelFactory {
 

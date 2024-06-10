@@ -26,12 +26,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.calorietracker_vamz.InfoWasFilled
+import com.example.calorietracker_vamz.R
 import com.example.calorietracker_vamz.ViewModelInitializer
 
+//Obrazovka, ktorá sa zobrazí iba raz pri spustení aplikácie a používateľ musí zadať svoje údaje
 @Composable
 fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewModel = viewModel(factory = ViewModelInitializer.Factory)) {
     val uiState by viewModel.uiState.collectAsState()
@@ -46,7 +49,7 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
         item {
             OutlinedTextField(value = uiState.age.toString(),
                 onValueChange = {viewModel.newAge(it.toIntOrNull() ?: 0)},
-                label = { Text("Age") },
+                label = { Text(stringResource(R.string.age)) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                     unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -61,7 +64,7 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
         item {
             OutlinedTextField(value = uiState.weight.toString(),
                 onValueChange = {viewModel.newWeight(it.toIntOrNull() ?: 0)},
-                label = { Text("Weight") },
+                label = { Text(stringResource(R.string.weight)) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                     unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -76,7 +79,7 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
         item {
             OutlinedTextField(value = uiState.height.toString(),
                 onValueChange = {viewModel.newHeight(it.toIntOrNull() ?: 0)},
-                label = { Text("Height") },
+                label = { Text(stringResource(R.string.height)) },
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
                     unfocusedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
@@ -92,7 +95,7 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
             Row (modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround) {
                 Column (horizontalAlignment = Alignment.CenterHorizontally){
-                    Text(text = "Male")
+                    Text(text = stringResource(R.string.male))
                     RadioButton(
                         selected = uiState.gender == "Male",
                         onClick = { viewModel.newGender("Male") },
@@ -103,7 +106,7 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
                     )
                 }
                 Column (horizontalAlignment = Alignment.CenterHorizontally){
-                    Text(text = "Female")
+                    Text(text = stringResource(R.string.female))
                     RadioButton(
                         selected = uiState.gender == "Female",
                         onClick = { viewModel.newGender("Female") },
@@ -134,7 +137,7 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
 
                 }
             ) {
-                Text(text = "Save")
+                Text(text = stringResource(R.string.save))
             }
         }
 
@@ -144,12 +147,12 @@ fun InfoScreen(navigateToStatisticScreen: () -> Unit ,viewModel: InfoScreenViewM
                 Snackbar(
                     action = {
                         TextButton(onClick = { showSnackbar.value = false }) {
-                            Text("Close")
+                            Text(stringResource(R.string.close))
                         }
                     },
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Text("You need to fill all information correctly")
+                    Text(stringResource(R.string.fillall))
                 }
             }
 

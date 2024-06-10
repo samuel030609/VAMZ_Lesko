@@ -18,6 +18,10 @@ import com.example.calorietracker_vamz.navigation.MyBottomBar
 import com.example.calorietracker_vamz.navigation.MyNavHost
 import com.example.calorietracker_vamz.navigation.Screens
 
+//Composable, ktoré sa vytvára pri spustení aplikácie
+//služí na definovanie celého layoutu aplikácie
+//obsahuje hornú lištu, spodnú lištu, ktorá sa nezobrazuje na všetkých obrazovkách
+//a obsahuje aj navigačný host, ktorý zobrazuje jednotlivé obrazovky v strede medzi hornou a spodnou lištou
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {

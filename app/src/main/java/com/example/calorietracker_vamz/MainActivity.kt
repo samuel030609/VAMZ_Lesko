@@ -14,7 +14,9 @@ import com.example.calorietracker_vamz.ui.theme.CalorieTracker_VAMZTheme
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
-
+//Hlavná aktivita, ktorá potom spúšta HomeScreen
+//a nastavuje sa tu taktiež vykonanie práce pre workera
+//aby sa vykonávala o polnoci a každých 24 hodín
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

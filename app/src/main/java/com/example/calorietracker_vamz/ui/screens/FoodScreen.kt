@@ -14,7 +14,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -38,7 +37,9 @@ import com.example.calorietracker_vamz.R
 import com.example.calorietracker_vamz.ViewModelInitializer
 import com.example.calorietracker_vamz.data.Food
 
-@OptIn(ExperimentalMaterial3Api::class)
+
+//Obrazovka, ktorá zobrazuje všetky jedlá spolu s ich obrázkami
+// a umožnuje aj vyhľadávať medzi jedlami
 @Composable
 fun FoodScreen(
     navigateToEatenFoodScreen: (Int) -> Unit,
@@ -87,7 +88,7 @@ fun FoodBody(
     ) {
         if(foods.isEmpty()) {
             Text(
-                text = "No food items found",
+                text = stringResource(R.string.foodfound),
                 fontSize = 20.sp
             )
         } else {

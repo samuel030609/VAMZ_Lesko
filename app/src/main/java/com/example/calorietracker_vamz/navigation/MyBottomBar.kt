@@ -17,6 +17,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.calorietracker_vamz.ui.screens.AddFoodDestination
 
+//Composable, ktorý služi na vytvorenie spodnej listi, ktorá sa používa na navigáciu v mojej aplikácií
 @Composable
 fun MyBottomBar(navController: NavController) {
     val listOfItem = listOf(

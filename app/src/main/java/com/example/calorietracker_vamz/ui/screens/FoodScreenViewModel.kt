@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
+//ViewModel pre obrazovku FoodScreen, ktorý si udržiava v stave zoznam všetkých jedál
 class FoodScreenViewModel (foodRepository: FoodRepository) : ViewModel() {
 
 

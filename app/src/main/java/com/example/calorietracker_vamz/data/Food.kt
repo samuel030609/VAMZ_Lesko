@@ -3,6 +3,7 @@ package com.example.calorietracker_vamz.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+//Prvok databázy
 @Entity(tableName = "food_table")
 data class Food (
     @PrimaryKey(autoGenerate = true)
@@ -15,6 +16,3 @@ data class Food (
     val sugar: Double,
     val picture: String
 )
-{
-
-}

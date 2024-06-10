@@ -2,6 +2,7 @@ package com.example.calorietracker_vamz.data
 
 import kotlinx.coroutines.flow.Flow
 
+//Interface na deklaráciu metód pre databázu
 interface FoodRepository {
     fun getAlphabetizedFoods(): Flow<List<Food>>
     suspend fun insert(food: Food)
